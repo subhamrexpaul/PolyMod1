@@ -21,7 +21,7 @@ contract MyNFT is ERC721Enumerable, Ownable {
         return tokenPrompts[tokenId];
     }
 
-    function mint(address , string memory ctoid) external onlyOwner {
+    function mint(address to , string memory cid) external onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         _mint(to, tokenId);
         tokenPrompts[tokenId] = cid;

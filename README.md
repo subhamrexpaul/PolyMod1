@@ -1,16 +1,53 @@
-# ERC20 Goerli to Mumbai Bridge Using fxPortal
-This project demonstrates how to use the fxPortal contracts to transfer ERC20 tokens from Goerli to Mumbai.
+# ERC721 To tranfer NFTs from Georli To Mumbai using fxPortal
 
-### Steps for Bridging
+This project demostrate a bridge, that can be used to transfer digital assets like NFTs from Georli Network to Mumbai Network using fxPortal.
 
-1. Run npm i to install dependencies
-2. Put your private key in the .env.examples file and rename to .env when finished
-3. Run npx hardhat run scipts/deploy.js --network goerli to deploy ERC20 contract
-4. Paste the newly deployed contract address in the tokenAddress variable for the other scripts
-5. Make sure to fill in your public key
-6. Run npx hardhat run scipts/mint.js --network goerli to mint tokens to your wallet
-7. Run npx hardhat run scipts/approveDeposit.js --network goerli to approve and deposit your tokens to polygon
-8. Wait 20-30ish minutes for tokens to show on polygon account
-9. Use polyscan.com to check your account for the tokens. Once they arrive, you can click on the transaction to get the contract address for polygon.
-10. Use this polygon contract address for your getBalance script's tokenAddress
-11. Run npx hardhat run scipts/getBalance.js --network mumbai to see the new polygon balance
+## Description
+
+This project is used to demonstrate the purpose of `fxPortal Bridge` and how it can be used to transfer digital assets i.e. NFTs from Ethereum chain to Polygon Chain. To make this project scalable, `ERC721` is used.
+
+## Getting Started
+
+### Installing
+
+First of all, after cloning this repository you have to install all necessary dependencies.
+* Use `npm i` to install all necessary dependencies.
+* Create `.env` file and paste your `PRIVATE_KEY` there.
+* Replace `walletAddress` and `tokenAddress` with your public addresses.
+
+### Executing program
+
+You have to run the scripts to make this project work.
+* First of all, you need to deploy this contract.
+```
+$ npx hardhat run scripts/deploy.js --network goerli
+```
+This command will deploy your contract and will give you a address. Paste the address in other scripts.
+
+* You'll need to mint the NFTs then.
+```
+$ npx hardhat run scripts/mint.js --network goerli
+```
+Replace `CIDs` and `prompt` according to your NFTs.
+
+* You can run given command to make `promptDescription` function.
+```
+$ npx hardhat run scripts/getPrompt.js --network goerli
+```
+* You will have to run approveDeposit script to Approve and Deposit the NFTs to fxPortal.
+```
+ $ npx hardhat run scripts/approveDeposit.js --network goerli
+```
+* After 20-30mins these NFTs will get transfered to the `Mumbai Testnet`, you can check balance of your wallet by running this command.
+```
+ $ npx hardhat run scripts/getBalance.js --network mumbai
+```
+
+## Help
+
+Before running these commands you need `GeoETH` and `MATIC` tokens in your account. You can use `faucets` to claim them.
+
+## Authors
+
+This work is done Solely by UDIT GUPTA.
+

@@ -1,9 +1,9 @@
 const hre = require("hardhat");
 const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
-const tokenAddress = "0xd29b26F664f44ac794659242E64551fc99450F27"; // place your public address for your wallet here
+const tokenAddress = "0x5ddF5B40e6880fa07cFd58626D6cCC15D04409c2"; 
 const tokenABI = tokenContractJSON.abi;
-const walletAddress = "0x0215C3BF05d1114b3A9D496F91d8999ea1643796"; // place your erc721 contract address here
+const walletAddress = "0xf773B5bB9844516A49375d17cD6592784C32d0c1"; 
 
 async function main() {
 

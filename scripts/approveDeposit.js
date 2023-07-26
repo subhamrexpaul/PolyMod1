@@ -2,17 +2,17 @@ const hre = require("hardhat");
 const fxRootContractABI = require("../fxRootContractABI.json");
 const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
-const tokenAddress = "0xd29b26F664f44ac794659242E64551fc99450F27"; 
+const tokenAddress = "0x5ddF5B40e6880fa07cFd58626D6cCC15D04409c2"; 
 const tokenABI = tokenContractJSON.abi;
 const fxERC721RootAddress = "0xF9bc4a80464E48369303196645e876c8C7D972de";
-const walletAddress = "0x0215C3BF05d1114b3A9D496F91d8999ea1643796"; 
+const walletAddress = "0xf773B5bB9844516A49375d17cD6592784C32d0c1"; 
 
 
 async function main() {
 
     const myNFTContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
     const fxContract = await hre.ethers.getContractAt(fxRootContractABI, fxERC721RootAddress);
-    const transferNFTs = 2;
+    const transferNFTs = 3;
 
     for (let i = 0; i < transferNFTs; i++) {
 
