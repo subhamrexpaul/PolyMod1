@@ -1,16 +1,20 @@
 const hre = require("hardhat");
 const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
-const walletAddress = "0x0215C3BF05d1114b3A9D496F91d8999ea1643796"; // place your erc721 contract address here
+const tokenAddress = "0xd29b26F664f44ac794659242E64551fc99450F27"; // place your public address for your wallet here
 const tokenABI = tokenContractJSON.abi;
-const tokenAddress = "0x8a002a49939de33da32c2f1f332a18e73bbbe472"; // place your public address for your wallet here
+const walletAddress = "0x0215C3BF05d1114b3A9D496F91d8999ea1643796"; // place your erc721 contract address here
 
 async function main() {
 
     const myContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
     const count = await myContract.balanceOf(walletAddress); // It will return number of NFTs in wallet
 
-    console.log("You now have: " + count.toString() + " NFTs in your Wallet!");
+    for (let i = 0; i < count; i++) {
+        const tokenID = await myContract.tokenOfOwnerByIndex(walletAddress, i);
+        const prompt = await myContract.promptDescription(tokenID);
+        console.log(`NFT with TokenID ${tokenID.toString()} has prompt: ${prompt}`);
+      }
 
   }
   
@@ -20,3 +24,5 @@ async function main() {
     console.error(error);
     process.exitCode = 1;
   });
+
+

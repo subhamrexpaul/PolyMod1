@@ -1,33 +1,40 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
 const hre = require("hardhat");
 const fxRootContractABI = require("../fxRootContractABI.json");
-const tokenContractJSON = require("../artifacts/contracts/MetaToken.sol/MetaToken.json");
+const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
-const tokenAddress = ""; // place your erc20 contract address here
+const tokenAddress = "0xd29b26F664f44ac794659242E64551fc99450F27"; 
 const tokenABI = tokenContractJSON.abi;
-const fxERC20RootAddress = "0x3658ccFDE5e9629b0805EB06AaCFc42416850961";
-const walletAddress = ""; // place your public address for your wallet here
+const fxERC721RootAddress = "0xF9bc4a80464E48369303196645e876c8C7D972de";
+const walletAddress = "0x0215C3BF05d1114b3A9D496F91d8999ea1643796"; 
+
 
 async function main() {
 
-    const tokenContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
-    const fxContract = await hre.ethers.getContractAt(fxRootContractABI, fxERC20RootAddress);
+    const myNFTContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
+    const fxContract = await hre.ethers.getContractAt(fxRootContractABI, fxERC721RootAddress);
+    const transferNFTs = 2;
 
-    const approveTx = await tokenContract.approve(fxERC20RootAddress, 500);
-    await approveTx.wait();
+    for (let i = 0; i < transferNFTs; i++) {
 
-    console.log('Approval confirmed');
+      const tokenID = await myNFTContract.tokenOfOwnerByIndex(walletAddress, i);
+      // Approve the FxPortal Bridge to transfer the NFT on your behalf
 
-
-    const depositTx = await fxContract.deposit(tokenAddress, walletAddress, 500, "0x6556");
-    await depositTx.wait();
-
-    console.log("Tokens deposited");
+      const approveTx = await myNFTContract.approve(fxERC721RootAddress, tokenID);
+      await approveTx.wait();
+  
+      console.log('Approval confirmed for NFT with Token ID:', tokenID.toString());
+  
+      // Deposit the NFT to the FxPortal Bridge
+      const depositTx = await fxContract.deposit(
+        tokenAddress,
+        walletAddress,
+        tokenID,
+        "0x6556"
+      );
+      await depositTx.wait();
+  
+      console.log("NFT with Token ID:", tokenID.toString(), "deposited to the FxPortal Bridge");
+    }
   
   }
   
