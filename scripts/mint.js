@@ -2,49 +2,49 @@ const hre = require("hardhat");
 const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 require('dotenv').config()
 
-const tokenAddress = "0x5ddF5B40e6880fa07cFd58626D6cCC15D04409c2"; 
+const rexAddress = "0x5b269675455f7C9B670226b42F16888aDe496c40"; 
 const tokenABI = tokenContractJSON.abi;
-const walletAddress = "0xf773B5bB9844516A49375d17cD6592784C32d0c1";   
+const walletAddress = "0x44D0Df1C9CCdFD2e2EdD3085B326c966765C280f";   
 
 async function main() {
 
-    const nftData = [
+    const rexData = [
       {
-        cid: "QmWdrcSKQBR6MxNcXW7HSQruDssjmNE7S59sjNQiH956s4",
-        prompt: "A geek solving coding problems",
+        cid: "Qmaw6bCRFeWmzLHjHVotcHSZTn3s1H25xXvHkMCi2uFRos",
+        prompt: "MCU Indian Superhero",
       },
       {
-        cid: "QmRmVnh6RieKNVcaq6mFxcsSmcPm66wK5jNRfXHJ77P1EF",
-        prompt: "Ancient man trying laptops",
+        cid: "QmR84chCuWRApoo1wte9KXAVwqdtZEsKsvyUVwjNdDx1EY",
+        prompt: "Ancient man using laptops",
       },
       {
-        cid: "QmTF9y1QJ5KRhinAoucBda7zGrdFF2F38vDTshf1gNJQJQ",
-        prompt: "Ancient men playing Multiplayer games",
+        cid: "Qmehcd1Dt9VarkzRndqw9Vo7i426LVvuaYsBpMa9M6j9QV",
+        prompt: "Indian Spiderman",
       },
       {
-        cid: "QmTcGoBXUDLFMpTUo379KM925mqhBd8LKMCMwXFAL4LknX",
-        prompt: "Blockchain ruling the world in 2025 ",
+        cid: "QmeTm3ote8FW1uPh7iS9Uz7zdPhnELxqxLvCmJZA9uPgG2",
+        prompt: "Loki lifting mjonir ",
       },
       {
-        cid: "QmeQNnNFi4BF7dv4kwkwkEvE7xxj2b9tVHu7YKuiMpw8Ku",
-        prompt: "Ethereum fighting with polygon",
+        cid: "Qmd4rZnUZ3VsFs3pei53wUkM7AS22GePFFdKdqZof6iihC",
+        prompt: "Shaktiman",
       }
     ]
 
-    const myContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
-    let tokenID = 0;
-    for(const {cid, prompt} of nftData){
+    const myContract = await hre.ethers.getContractAt(tokenABI, rexAddress);
+    let rexID = 0;
+    for(const {cid, prompt} of rexData){
       // Minting NFTs
       const tx = await myContract.mint(walletAddress, cid);
       await tx.wait();
       console.log("NFT minted with CID: ", cid, " To: ", walletAddress);
 
       // Setting Prompts
-      const setPromptTx = await myContract.setPrompt(tokenID, prompt);
+      const setPromptTx = await myContract.setPrompt(rexID, prompt);
       await setPromptTx.wait();
 
-      console.log(`Prompt set for NFT with tokenID ${tokenID.toString()}!`);
-      tokenID++;
+      console.log(`Prompt set for NFT with tokenID ${rexID.toString()}!`);
+      rexID++;
     }
 
   }

@@ -34,6 +34,7 @@ Replace `CIDs` and `prompt` according to your NFTs.
 ```
 $ npx hardhat run scripts/getPrompt.js --network goerli
 ```
+
 * You will have to run approveDeposit script to Approve and Deposit the NFTs to fxPortal.
 ```
  $ npx hardhat run scripts/approveDeposit.js --network goerli

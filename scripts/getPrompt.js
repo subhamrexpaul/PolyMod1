@@ -1,19 +1,19 @@
 const hre = require("hardhat");
 const tokenContractJSON = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
 
-const tokenAddress = "0x5ddF5B40e6880fa07cFd58626D6cCC15D04409c2"; 
+const rexAddress = "0x5b269675455f7C9B670226b42F16888aDe496c40"; 
 const tokenABI = tokenContractJSON.abi;
-const walletAddress = "0xf773B5bB9844516A49375d17cD6592784C32d0c1"; 
+const walletAddress = "0x44D0Df1C9CCdFD2e2EdD3085B326c966765C280f"; 
 
 async function main() {
 
-    const myContract = await hre.ethers.getContractAt(tokenABI, tokenAddress);
-    const count = await myContract.balanceOf(walletAddress); // It will return number of NFTs in wallet
+    const myContract = await hre.ethers.getContractAt(tokenABI, rexAddress);
+    const balance = await myContract.balanceOf(walletAddress); // It will return number of Rex in wallet
 
-    for (let i = 0; i < count; i++) {
-        const tokenID = await myContract.tokenOfOwnerByIndex(walletAddress, i);
-        const prompt = await myContract.promptDescription(tokenID);
-        console.log(`NFT with TokenID ${tokenID.toString()} has prompt: ${prompt}`);
+    for (let i = 0; i < balance; i++) {
+        const rexID = await myContract.tokenOfOwnerByIndex(walletAddress, i);
+        const prompt = await myContract.promptDescription(rexID);
+        console.log(`NFT with rexID ${rexID.toString()} has prompt: ${prompt}`);
       }
 
   }

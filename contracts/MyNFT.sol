@@ -7,24 +7,24 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract MyNFT is ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
+    Counters.Counter private _rexIdCounter;
 
-    mapping(uint256 => string) private tokenPrompts;
+    mapping(uint256 => string) private rexPrompts;
 
-    constructor() ERC721("NFTVerse", "NFTs") {}
+    constructor() ERC721("SubhamVerse", "Rex") {}
 
-    function setPrompt(uint256 tokenId, string memory prompt) external onlyOwner {
-        tokenPrompts[tokenId] = prompt;
+    function setPrompt(uint256 RexID, string memory prompt) external onlyOwner {
+        rexPrompts[RexID] = prompt;
     }
 
-    function promptDescription(uint256 tokenId) external view returns (string memory) {
-        return tokenPrompts[tokenId];
+    function promptDescription(uint256 RexID) external view returns (string memory) {
+        return rexPrompts[RexID];
     }
 
     function mint(address to , string memory cid) external onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
-        _mint(to, tokenId);
-        tokenPrompts[tokenId] = cid;
-        _tokenIdCounter.increment();
+        uint256 RexID = _rexIdCounter.current();
+        _mint(to, RexID);
+        rexPrompts[RexID] = cid;
+        _rexIdCounter.increment();
     }
 }

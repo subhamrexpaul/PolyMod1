@@ -10,7 +10,7 @@ async function main() {
 
   const token = await hre.ethers.deployContract("MyNFT");
 
-  console.log("Token address:", await token.getAddress());
+  console.log("Rex address:", await token.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
