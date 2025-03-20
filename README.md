@@ -4,6 +4,8 @@ This project showcases the functionality of a bridge designed to facilitate the 
 
 This project is used to demonstrate the purpose of `fxPortal Bridge` and how it can be used to transfer digital assets i.e. NFTs from Ethereum chain to Polygon Chain. To make this project scalable, `ERC721` is used.
 
+https://github.com/subhamrexpaul/METACRAFTERS/blob/main/README.md#assessment-2--eth-proof--beginner-evm-level
+
 ## Project Overview
 The primary objective of this project is to provide a practical demonstration of the capabilities of the fxPortal Bridge and its application in transferring digital assets, particularly NFTs, from the Ethereum chain (Georli Network) to the Polygon Chain (Mumbai Network). To ensure the scalability of the project, the ERC721 token standard is employed.
 
